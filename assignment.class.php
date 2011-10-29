@@ -831,14 +831,14 @@ class assignment_onlinejudge extends assignment_uploadsingle {
         else {
             $tokens = Array();
             $tok = strtok($answer, " \n\r\t");
-            while ($tok) {
+            while ($tok !== false) {
                 $tokens[] = $tok;
                 $tok = strtok(" \n\r\t");
             }
 
             $tok = strtok($output, " \n\r\t");
             foreach ($tokens as $anstok) {
-                if (!$tok || $tok !== $anstok)
+                if ($tok === false || $tok !== $anstok)
                     return 'wa';
                 $tok = strtok(" \n\r\t");
             }
